@@ -1,0 +1,10 @@
+{
+  "name": "zen-vajrayana-portal",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vercel dev",
+    "start": "vercel dev",
+    "build": "echo \"Nothing to build\""
+  }
+}
