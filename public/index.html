@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Self Service Portal — Zen Vajrayana Mockup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+  <style>
+    :root{ --brand-maroon:#7B2B2A; --brand-gold:#C8A951; --brand-cream:#F7F3EA; --brand-ink:#1f2937; }
+    .brand-gradient{background:linear-gradient(135deg,var(--brand-maroon),#3f1a19);}
+    .brand-gradient-dark{background:linear-gradient(135deg,#5c1f1e,#1d1413);}
+    .paper{background:radial-gradient(200px 100px at 0% 0%, rgba(255,255,255,.35), transparent),
+                    radial-gradient(300px 150px at 100% 0%, rgba(255,255,255,.2), transparent),
+                    linear-gradient(0deg, #f9f6ef, #f3efe5);}
+    .paper-dark{background:linear-gradient(0deg, #171513, #1b1917);}
+    .lotus-overlay{background-image:
+      radial-gradient(ellipse at center, rgba(255,255,255,0.10), rgba(255,255,255,0) 60%),
+      url('https://images.unsplash.com/photo-1482192505345-5655af888cc4?q=80&w=2000&auto=format&fit=crop');
+      background-size:cover; background-position:center; filter:saturate(90%);
+    }
+    .btn-primary{background:var(--brand-maroon); color:#fff;}
+    .btn-primary:hover{filter:brightness(1.08);}
+    .btn-outline{border:1px solid var(--brand-gold); color:var(--brand-gold);}
+    .btn-outline:hover{background:var(--brand-gold); color:#2b211f;}
+    .ring-gold{box-shadow:0 0 0 2px var(--brand-gold) inset;}
+  </style>
+</head>
+<body class="text-stone-800 dark:text-stone-200 bg-[var(--brand-cream)] dark:bg-[#141211]">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white dark:bg-stone-800 text-stone-800 dark:text-stone-100 px-3 py-1 rounded">Skip to content</a>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 dark:bg-stone-900/80 backdrop-blur border-b border-[var(--brand-gold)]">
+    <div class="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="h-9 w-9 rounded-full ring-gold flex items-center justify-center text-stone-700 dark:text-stone-100 bg-white/80 dark:bg-stone-800" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3c3 2.5 6 5 6 8a6 6 0 1 1-12 0c0-3 3-5.5 6-8Z"/></svg>
+        </span>
+        <a href="#" class="text-lg font-semibold tracking-wide" style="color:var(--brand-gold)" data-i18n="site_name">Amitabha Buddhist Centre</a>
+      </div>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a class="hover:text-[var(--brand-maroon)]" href="#teachings" data-i18n="nav_teachings">Teachings</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#events" data-i18n="nav_events">Events</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#donate" data-i18n="nav_donate">Donate</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#shop" data-i18n="nav_shop">Shop</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#library" data-i18n="nav_library">Library</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#blog" data-i18n="nav_articles">Articles</a>
+        <a class="hover:text-[var(--brand-maroon)]" href="#contact" data-i18n="nav_visit">Visit</a>
+      </nav>
+      <div class="hidden md:flex items-center gap-2">
+        <button id="lang-toggle" class="rounded px-3 py-1.5 ring-1 ring-stone-300 dark:ring-stone-700 text-sm" aria-label="Toggle language">EN/中文</button>
+        <button id="dark-toggle" class="rounded px-3 py-1.5 ring-1 ring-stone-300 dark:ring-stone-700 text-sm" aria-label="Toggle dark mode">🌙</button>
+        <a href="#" class="btn-outline px-3 py-1.5 rounded" data-i18n="login">Login</a>
+        <a href="#donate" class="btn-primary px-3 py-1.5 rounded" data-i18n="donate">Donate</a>
+      </div>
+      <!-- Mobile buttons -->
+      <div class="flex items-center gap-2 md:hidden">
+        <button id="lang-toggle-sm" class="rounded p-2 ring-1 ring-stone-300 dark:ring-stone-700" aria-label="Toggle language">EN/中</button>
+        <button id="dark-toggle-sm" class="rounded p-2 ring-1 ring-stone-300 dark:ring-stone-700" aria-label="Toggle dark mode">🌙</button>
+        <button id="menuBtn" class="rounded p-2 ring-1 ring-stone-300 dark:ring-stone-700" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Drawer -->
+    <div id="mobileNav" class="md:hidden hidden border-t bg-white dark:bg-stone-900">
+      <div class="px-4 py-3 grid gap-3 text-sm">
+        <a href="#teachings" data-i18n="nav_teachings">Teachings</a>
+        <a href="#events" data-i18n="nav_events">Events</a>
+        <a href="#donate" data-i18n="nav_donate">Donate</a>
+        <a href="#shop" data-i18n="nav_shop">Shop</a>
+        <a href="#library" data-i18n="nav_library">Library</a>
+        <a href="#blog" data-i18n="nav_articles">Articles</a>
+        <a href="#contact" data-i18n="nav_visit">Visit</a>
+        <div class="flex gap-2 pt-2">
+          <a href="#" class="btn-outline px-3 py-1.5 rounded w-full text-center" data-i18n="login">Login</a>
+          <a href="#donate" class="btn-primary px-3 py-1.5 rounded w-full text-center" data-i18n="donate">Donate</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Hero -->
+    <section class="relative lotus-overlay text-white">
+      <div class="absolute inset-0 brand-gradient opacity-60 dark:hidden"></div>
+      <div class="absolute inset-0 brand-gradient-dark opacity-70 hidden dark:block"></div>
+      <div class="relative mx-auto max-w-7xl px-4 py-16 md:py-24">
+        <div class="max-w-2xl">
+          <h1 class="text-3xl md:text-5xl font-semibold mb-4" data-i18n="hero_title">Clarity. Compassion. Wisdom.</h1>
+          <p class="text-base md:text-lg opacity-95 mb-8" data-i18n="hero_desc">A serene, mobile‑first portal to explore teachings, join events, practice generosity, and connect with the lineage.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="#events" class="btn-primary px-4 py-2 rounded" data-i18n="cta_events">Upcoming Events</a>
+            <a href="#teachings" class="btn-outline px-4 py-2 rounded" data-i18n="cta_teachings">Explore Teachings</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="mx-auto max-w-7xl px-4 -mt-8 md:-mt-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="#class-schedule" class="bg-white dark:bg-stone-900 rounded-xl p-5 shadow hover:shadow-md transition ring-1 ring-stone-200 dark:ring-stone-800">
+          <div class="text-stone-500 dark:text-stone-400" data-i18n="qa_schedule">Class Schedule</div>
+          <div class="text-stone-800 dark:text-stone-200 font-medium" data-i18n="qa_schedule_desc">Find a class this week →</div>
+        </a>
+        <a href="#donate" class="bg-white dark:bg-stone-900 rounded-xl p-5 shadow hover:shadow-md transition ring-1 ring-stone-200 dark:ring-stone-800">
+          <div class="text-stone-500 dark:text-stone-400" data-i18n="qa_donation">Donation & Sponsorship</div>
+          <div class="text-stone-800 dark:text-stone-200 font-medium" data-i18n="qa_donation_desc">Support a project →</div>
+        </a>
+        <a href="#library" class="bg-white dark:bg-stone-900 rounded-xl p-5 shadow hover:shadow-md transition ring-1 ring-stone-200 dark:ring-stone-800">
+          <div class="text-stone-500 dark:text-stone-400" data-i18n="qa_library">E‑Material Library</div>
+          <div class="text-stone-800 dark:text-stone-200 font-medium" data-i18n="qa_library_desc">Sutras, PDFs & audio →</div>
+        </a>
+        <a href="#volunteer" class="bg-white dark:bg-stone-900 rounded-xl p-5 shadow hover:shadow-md transition ring-1 ring-stone-200 dark:ring-stone-800">
+          <div class="text-stone-500 dark:text-stone-400" data-i18n="qa_volunteer">Volunteer</div>
+          <div class="text-stone-800 dark:text-stone-200 font-medium" data-i18n="qa_volunteer_desc">Offer your time →</div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Teachings -->
+    <section id="teachings" class="mx-auto max-w-7xl px-4 py-14">
+      <div class="flex items-end justify-between mb-6">
+        <h2 class="text-2xl md:text-3xl font-semibold" style="color:var(--brand-maroon)" data-i18n="teachings_title">Teachings & Education</h2>
+        <a href="#" class="text-sm text-[var(--brand-maroon)]" data-i18n="view_all">View all →</a>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+          <img src="https://images.unsplash.com/photo-1543997385-22fe0f5f9b49?q=80&w=1600&auto=format&fit=crop" alt="" class="h-40 w-full object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold mb-1">Discovering Buddhism</h3>
+            <p class="text-sm text-stone-600 dark:text-stone-400 mb-3" data-i18n="discovering_desc">Foundational modules introducing Dharma, meditation and ethical living.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-stone-500 dark:text-stone-400" data-i18n="next_intake">Next intake: Nov 12</span>
+              <a class="btn-outline rounded px-3 py-1.5 text-sm" href="#" data-i18n="details">Details</a>
+            </div>
+          </div>
+        </article>
+        <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+          <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1600&auto=format&fit=crop" alt="" class="h-40 w-full object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold mb-1">Lamrim Study Group</h3>
+            <p class="text-sm text-stone-600 dark:text-stone-400 mb-3" data-i18n="lamrim_desc">Graduated path sessions with readings and guided reflections.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-stone-500 dark:text-stone-400">Every Sun, 10am</span>
+              <a class="btn-outline rounded px-3 py-1.5 text-sm" href="#" data-i18n="join">Join</a>
+            </div>
+          </div>
+        </article>
+        <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+          <img src="https://images.unsplash.com/photo-1520975874533-6de8c1df56b1?q=80&w=1600&auto=format&fit=crop" alt="" class="h-40 w-full object-cover">
+          <div class="p-5">
+            <h3 class="font-semibold mb-1" data-i18n="talks_title">Online Dharma Talks</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400 mb-3" data-i18n="talks_desc">Weekly teachings with Q&A and downloadable notes.</p>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-stone-500 dark:text-stone-400">Thu, 8pm</span>
+              <a class="btn-outline rounded px-3 py-1.5 text-sm" href="#" data-i18n="register">Register</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="paper dark:paper-dark border-y border-[var(--brand-gold)]">
+      <div class="mx-auto max-w-7xl px-4 py-14">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl md:text-3xl font-semibold" style="color:var(--brand-maroon)" data-i18n="events_title">Upcoming Events</h2>
+          <a href="#" class="text-sm text-[var(--brand-maroon)]" data-i18n="calendar">Calendar →</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-5">
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-5 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="text-sm text-stone-500 dark:text-stone-400">Nov 18, 7:30pm</div>
+            <div class="font-semibold">Chenrezig Puja</div>
+            <p class="text-sm text-stone-600 dark:text-stone-400 mt-2" data-i18n="puja_desc">Compassion practice with chanting and guided meditation.</p>
+            <a class="btn-primary inline-block mt-4 px-3 py-1.5 rounded text-sm" href="#" data-i18n="register">Register</a>
+          </div>
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-5 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="text-sm text-stone-500 dark:text-stone-400">Nov 24, 10:00am</div>
+            <div class="font-semibold">Dharma Day Retreat</div>
+            <p class="text-sm text-stone-600 dark:text-stone-400 mt-2" data-i18n="retreat_desc">Half‑day retreat with silence, sitting & walking practice.</p>
+            <a class="btn-primary inline-block mt-4 px-3 py-1.5 rounded text-sm" href="#" data-i18n="register">Register</a>
+          </div>
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-5 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="text-sm text-stone-500 dark:text-stone-400">Dec 2, 8:00pm</div>
+            <div class="font-semibold">Heart Sutra Study</div>
+            <p class="text-sm text-stone-600 dark:text-stone-400 mt-2" data-i18n="heartsutra_desc">Exploring emptiness and compassion for daily life.</p>
+            <a class="btn-primary inline-block mt-4 px-3 py-1.5 rounded text-sm" href="#" data-i18n="register">Register</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donation -->
+    <section id="donate" class="mx-auto max-w-7xl px-4 py-14">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-3" style="color:var(--brand-maroon)" data-i18n="donation_title">Practice Generosity</h2>
+          <p class="text-stone-700 dark:text-stone-300" data-i18n="donation_desc">Support teachings, community care and Dharma projects. Choose one‑time or monthly giving, or sponsor items such as statues, texts and puja offerings.</p>
+          <div class="mt-5 flex gap-3">
+            <a class="btn-primary px-4 py-2 rounded" href="#" data-i18n="donate_now">Donate Now</a>
+            <a class="btn-outline px-4 py-2 rounded" href="#" data-i18n="sponsorship_items">Sponsorship Items</a>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-stone-900 rounded-xl p-6 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-4 rounded-lg ring-1 ring-stone-200 dark:ring-stone-800">
+              <div class="text-sm text-stone-500 dark:text-stone-400" data-i18n="fund_general">General Fund</div>
+              <div class="font-semibold mb-2" data-i18n="fund_sustain">Sustain the Centre</div>
+              <a class="btn-primary px-3 py-1.5 rounded text-sm" href="#" data-i18n="give">Give</a>
+            </div>
+            <div class="p-4 rounded-lg ring-1 ring-stone-200 dark:ring-stone-800">
+              <div class="text-sm text-stone-500 dark:text-stone-400" data-i18n="fund_education">Education</div>
+              <div class="font-semibold mb-2" data-i18n="fund_support_classes">Support Classes</div>
+              <a class="btn-primary px-3 py-1.5 rounded text-sm" href="#" data-i18n="give">Give</a>
+            </div>
+            <div class="p-4 rounded-lg ring-1 ring-stone-200 dark:ring-stone-800">
+              <div class="text-sm text-stone-500 dark:text-stone-400" data-i18n="fund_library">Library</div>
+              <div class="font-semibold mb-2" data-i18n="fund_texts_materials">Texts & Materials</div>
+              <a class="btn-primary px-3 py-1.5 rounded text-sm" href="#" data-i18n="give">Give</a>
+            </div>
+            <div class="p-4 rounded-lg ring-1 ring-stone-200 dark:ring-stone-800">
+              <div class="text-sm text-stone-500 dark:text-stone-400" data-i18n="fund_compassion">Compassion</div>
+              <div class="font-semibold mb-2" data-i18n="fund_care_service">Care & Service</div>
+              <a class="btn-primary px-3 py-1.5 rounded text-sm" href="#" data-i18n="give">Give</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop / eCatalog -->
+    <section id="shop" class="paper dark:paper-dark border-y border-[var(--brand-gold)]">
+      <div class="mx-auto max-w-7xl px-4 py-14">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl md:text-3xl font-semibold" style="color:var(--brand-maroon)" data-i18n="shop_title">Dharma Shop</h2>
+          <a href="#" class="text-sm text-[var(--brand-maroon)]" data-i18n="view_all">View all →</a>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-4 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="h-32 bg-stone-100 dark:bg-stone-800 rounded mb-3"></div>
+            <div class="font-medium">Prayer Wheel (mini)</div>
+            <div class="text-sm text-stone-500 dark:text-stone-400">S$28</div>
+            <a class="btn-outline inline-block mt-3 px-3 py-1.5 rounded text-sm" href="#" data-i18n="add_to_cart">Add to Cart</a>
+          </div>
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-4 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="h-32 bg-stone-100 dark:bg-stone-800 rounded mb-3"></div>
+            <div class="font-medium">Sandalwood Mala</div>
+            <div class="text-sm text-stone-500 dark:text-stone-400">S$35</div>
+            <a class="btn-outline inline-block mt-3 px-3 py-1.5 rounded text-sm" href="#" data-i18n="add_to_cart">Add to Cart</a>
+          </div>
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-4 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="h-32 bg-stone-100 dark:bg-stone-800 rounded mb-3"></div>
+            <div class="font-medium">Chenrezig Poster</div>
+            <div class="text-sm text-stone-500 dark:text-stone-400">S$12</div>
+            <a class="btn-outline inline-block mt-3 px-3 py-1.5 rounded text-sm" href="#" data-i18n="add_to_cart">Add to Cart</a>
+          </div>
+          <div class="bg-white dark:bg-stone-900 rounded-xl p-4 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+            <div class="h-32 bg-stone-100 dark:bg-stone-800 rounded mb-3"></div>
+            <div class="font-medium">Dharma e‑Book</div>
+            <div class="text-sm text-stone-500 dark:text-stone-400">S$8</div>
+            <a class="btn-outline inline-block mt-3 px-3 py-1.5 rounded text-sm" href="#" data-i18n="add_to_cart">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Library / Articles -->
+    <section id="library" class="mx-auto max-w-7xl px-4 py-14">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-semibold mb-3" style="color:var(--brand-maroon)" data-i18n="library_title">E‑Material Library</h2>
+          <p class="text-stone-700 dark:text-stone-300" data-i18n="library_desc">Browse sutras, PDFs, chants and audio teachings. Download for personal practice and study.</p>
+          <div class="mt-5 flex gap-3">
+            <a class="btn-primary px-4 py-2 rounded" href="#" data-i18n="open_library">Open Library</a>
+            <a class="btn-outline px-4 py-2 rounded" href="#blog" data-i18n="latest_articles">Latest Articles</a>
+          </div>
+        </div>
+        <div class="bg-white dark:bg-stone-900 rounded-xl p-6 ring-1 ring-stone-200 dark:ring-stone-800 shadow">
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-center justify-between"><span>Heart Sutra (PDF)</span><a class="text-[var(--brand-maroon)]" href="#" data-i18n="download">Download</a></li>
+            <li class="flex items-center justify-between"><span>Refuge & Bodhicitta Chant (Audio)</span><a class="text-[var(--brand-maroon)]" href="#" data-i18n="play">Play</a></li>
+            <li class="flex items-center justify-between"><span>Lamrim Outline (e‑book)</span><a class="text-[var(--brand-maroon)]" href="#" data-i18n="open">Open</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog / Articles -->
+    <section id="blog" class="paper dark:paper-dark border-y border-[var(--brand-gold)]">
+      <div class="mx-auto max-w-7xl px-4 py-14">
+        <div class="flex items-end justify-between mb-6">
+          <h2 class="text-2xl md:text-3xl font-semibold" style="color:var(--brand-maroon)" data-i18n="articles_title">Articles & News</h2>
+          <a href="#" class="text-sm text-[var(--brand-maroon)]" data-i18n="view_all">View all →</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+            <img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1520975980474-76d4ce9e41b8?q=80&w=1600&auto=format&fit=crop" alt=""/>
+            <div class="p-5">
+              <h3 class="font-semibold mb-2" data-i18n="art1_title">Finding Calm in Busy Times</h3>
+              <p class="text-sm text-stone-600 dark:text-stone-400" data-i18n="art1_desc">Simple practices for cultivating stillness in daily life.</p>
+            </div>
+          </article>
+          <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+            <img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?q=80&w=1600&auto=format&fit=crop" alt=""/>
+            <div class="p-5">
+              <h3 class="font-semibold mb-2" data-i18n="art2_title">The Heart of Compassion</h3>
+              <p class="text-sm text-stone-600 dark:text-stone-400" data-i18n="art2_desc">Understanding bodhicitta and practical ways to nurture it.</p>
+            </div>
+          </article>
+          <article class="bg-white dark:bg-stone-900 rounded-xl overflow-hidden shadow ring-1 ring-stone-200 dark:ring-stone-800">
+            <img class="h-40 w-full object-cover" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop" alt=""/>
+            <div class="p-5">
+              <h3 class="font-semibold mb-2" data-i18n="art3_title">Lineage & Teachers</h3>
+              <p class="text-sm text-stone-600 dark:text-stone-400" data-i18n="art3_desc">Honouring our teachers and the Vajrayana tradition.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="mx-auto max-w-7xl px-4 py-14">
+      <div class="bg-white dark:bg-stone-900 rounded-xl p-6 ring-1 ring-stone-200 dark:ring-stone-800 shadow flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-semibold" style="color:var(--brand-maroon)" data-i18n="newsletter">Newsletter</h3>
+          <p class="text-sm text-stone-600 dark:text-stone-400" data-i18n="newsletter_desc">Get event reminders and new teachings in your inbox.</p>
+        </div>
+        <form class="flex w-full md:w-auto gap-2">
+          <input class="w-full md:w-80 px-3 py-2 rounded ring-1 ring-stone-300 dark:ring-stone-700 bg-white dark:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-[var(--brand-gold)]" placeholder="Email" data-i18n-placeholder="email_placeholder"/>
+          <button class="btn-primary px-4 py-2 rounded" type="button" data-i18n="subscribe">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contact" class="brand-gradient dark:brand-gradient-dark text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 grid md:grid-cols-4 gap-8">
+      <div>
+        <div class="font-semibold" data-i18n="site_name">Amitabha Buddhist Centre</div>
+        <p class="text-sm opacity-90 mt-2" data-i18n="footer_desc">A place of study and practice in the Tibetan Buddhist tradition.</p>
+      </div>
+      <div>
+        <div class="font-semibold" data-i18n="explore">Explore</div>
+        <ul class="mt-2 space-y-1 text-sm opacity-95">
+          <li><a href="#teachings" class="hover:underline" data-i18n="nav_teachings">Teachings</a></li>
+          <li><a href="#events" class="hover:underline" data-i18n="nav_events">Events</a></li>
+          <li><a href="#donate" class="hover:underline" data-i18n="nav_donate">Donate</a></li>
+          <li><a href="#shop" class="hover:underline" data-i18n="nav_shop">Shop</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold" data-i18n="resources">Resources</div>
+        <ul class="mt-2 space-y-1 text-sm opacity-95">
+          <li><a href="#library" class="hover:underline" data-i18n="nav_library">E‑Material Library</a></li>
+          <li><a href="#blog" class="hover:underline" data-i18n="nav_articles">Articles</a></li>
+          <li><a href="#" class="hover:underline" data-i18n="faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-semibold" data-i18n="contact">Contact</div>
+        <ul class="mt-2 space-y-1 text-sm opacity-95">
+          <li>24 abc street, Singapore</li>
+          <li>+65 6000 0000</li>
+          <li><a href="mailto:hello@abc.org" class="hover:underline">hello@abc.org</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/20 py-4 text-center text-xs opacity-90">© 2025 <span data-i18n="site_name">Amitabha Buddhist Centre</span></div>
+  </footer>
+
+  <!-- AI ASSISTANT FLOATING WIDGET -->
+  <button id="ai-open"
+    class="fixed bottom-5 right-5 z-50 rounded-full p-4 shadow-lg btn-primary"
+    aria-label="Open AI Assistant">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+        d="M8 10h8M8 14h5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+    </svg>
+  </button>
+
+  <div id="ai-panel"
+    class="hidden fixed bottom-5 right-5 z-50 w-[92vw] max-w-md rounded-2xl bg-white dark:bg-stone-900 shadow-2xl ring-1 ring-stone-300 dark:ring-stone-700 overflow-hidden">
+    <div class="brand-gradient dark:brand-gradient-dark text-white px-4 py-3 flex items-center justify-between">
+      <div class="font-semibold" data-i18n="assistant_title">Dharma Assistant</div>
+      <button id="ai-close" class="rounded p-1 hover:bg-white/10" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Quick suggestions -->
+    <div class="p-3 border-b border-stone-200 dark:border-stone-800 bg-[var(--brand-cream)] dark:bg-stone-900">
+      <div class="text-xs uppercase tracking-wide mb-2 text-stone-500 dark:text-stone-400" data-i18n="quick_questions">Quick questions</div>
+      <div class="flex flex-wrap gap-2">
+        <button class="text-sm px-3 py-1.5 rounded ring-1 ring-stone-300 dark:ring-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 ai-suggest" data-i18n="sug_classes">Find classes this week</button>
+        <button class="text-sm px-3 py-1.5 rounded ring-1 ring-stone-300 dark:ring-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 ai-suggest" data-i18n="sug_donate">How do I donate or sponsor?</button>
+        <button class="text-sm px-3 py-1.5 rounded ring-1 ring-stone-300 dark:ring-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 ai-suggest" data-i18n="sug_chenrezig">Show me Chenrezig resources</button>
+        <button class="text-sm px-3 py-1.5 rounded ring-1 ring-stone-300 dark:ring-stone-700 hover:bg-stone-50 dark:hover:bg-stone-800 ai-suggest" data-i18n="sug_visit">Where is the centre & how to visit?</button>
+      </div>
+    </div>
+
+    <div id="ai-messages" class="max-h-[50vh] overflow-y-auto p-4 space-y-3 bg-[var(--brand-cream)] dark:bg-stone-950">
+      <div class="flex items-start gap-2">
+        <div class="shrink-0 h-8 w-8 rounded-full ring-gold flex items-center justify-center text-[var(--brand-maroon)] bg-white dark:bg-stone-800 dark:text-stone-100">AI</div>
+        <div class="bg-white dark:bg-stone-900 rounded-xl p-3 ring-1 ring-stone-200 dark:ring-stone-800 text-sm" data-i18n="assistant_greet">
+          Hi! I can help you find classes, events, Dharma materials, or guide donation options. How may I help?
+        </div>
+      </div>
+    </div>
+
+    <form id="ai-form" class="p-3 border-t bg-white dark:bg-stone-900 border-stone-200 dark:border-stone-800">
+      <div class="flex gap-2">
+        <input id="ai-input" class="flex-1 px-3 py-2 rounded ring-1 ring-stone-300 dark:ring-stone-700 bg-white dark:bg-stone-800 focus:outline-none focus:ring-2 focus:ring-[var(--brand-gold)]"
+          placeholder="Ask about events, classes, donations, library..." data-i18n-placeholder="ask_placeholder"/>
+        <button class="btn-primary px-4 py-2 rounded" type="submit" data-i18n="send">Send</button>
+      </div>
+      <div id="ai-error" class="text-xs text-red-700 mt-2 hidden"></div>
+    </form>
+  </div>
+  <!-- /AI ASSISTANT -->
+
+  <script>
+    // I18N strings (en & zh)
+    const I18N = {
+      en: {
+        site_name: "Amitabha Buddhist Centre",
+        nav_teachings: "Teachings",
+        nav_events: "Events",
+        nav_donate: "Donate",
+        nav_shop: "Shop",
+        nav_library: "Library",
+        nav_articles: "Articles",
+        nav_visit: "Visit",
+        login: "Login",
+        donate: "Donate",
+        hero_title: "Clarity. Compassion. Wisdom.",
+        hero_desc: "A serene, mobile‑first portal to explore teachings, join events, practice generosity, and connect with the lineage.",
+        cta_events: "Upcoming Events",
+        cta_teachings: "Explore Teachings",
+        qa_schedule: "Class Schedule",
+        qa_schedule_desc: "Find a class this week →",
+        qa_donation: "Donation & Sponsorship",
+        qa_donation_desc: "Support a project →",
+        qa_library: "E‑Material Library",
+        qa_library_desc: "Sutras, PDFs & audio →",
+        qa_volunteer: "Volunteer",
+        qa_volunteer_desc: "Offer your time →",
+        teachings_title: "Teachings & Education",
+        view_all: "View all →",
+        discovering_desc: "Foundational modules introducing Dharma, meditation and ethical living.",
+        next_intake: "Next intake: Nov 12",
+        details: "Details",
+        lamrim_desc: "Graduated path sessions with readings and guided reflections.",
+        join: "Join",
+        talks_title: "Online Dharma Talks",
+        talks_desc: "Weekly teachings with Q&A and downloadable notes.",
+        register: "Register",
+        events_title: "Upcoming Events",
+        calendar: "Calendar →",
+        puja_desc: "Compassion practice with chanting and guided meditation.",
+        retreat_desc: "Half‑day retreat with silence, sitting & walking practice.",
+        heartsutra_desc: "Exploring emptiness and compassion for daily life.",
+        donation_title: "Practice Generosity",
+        donation_desc: "Support teachings, community care and Dharma projects. Choose one‑time or monthly giving, or sponsor items such as statues, texts and puja offerings.",
+        donate_now: "Donate Now",
+        sponsorship_items: "Sponsorship Items",
+        fund_general: "General Fund",
+        fund_sustain: "Sustain the Centre",
+        fund_education: "Education",
+        fund_support_classes: "Support Classes",
+        fund_library: "Library",
+        fund_texts_materials: "Texts & Materials",
+        fund_compassion: "Compassion",
+        fund_care_service: "Care & Service",
+        give: "Give",
+        shop_title: "Dharma Shop",
+        add_to_cart: "Add to Cart",
+        library_title: "E‑Material Library",
+        library_desc: "Browse sutras, PDFs, chants and audio teachings. Download for personal practice and study.",
+        open_library: "Open Library",
+        latest_articles: "Latest Articles",
+        download: "Download",
+        play: "Play",
+        open: "Open",
+        articles_title: "Articles & News",
+        art1_title: "Finding Calm in Busy Times",
+        art1_desc: "Simple practices for cultivating stillness in daily life.",
+        art2_title: "The Heart of Compassion",
+        art2_desc: "Understanding bodhicitta and practical ways to nurture it.",
+        art3_title: "Lineage & Teachers",
+        art3_desc: "Honouring our teachers and the Vajrayana tradition.",
+        newsletter: "Newsletter",
+        newsletter_desc: "Get event reminders and new teachings in your inbox.",
+        email_placeholder: "Your email",
+        subscribe: "Subscribe",
+        explore: "Explore",
+        resources: "Resources",
+        faq: "FAQ",
+        contact: "Contact",
+        assistant_title: "Dharma Assistant",
+        quick_questions: "Quick questions",
+        assistant_greet: "Hi! I can help you find classes, events, Dharma materials, or guide donation options. How may I help?",
+        sug_classes: "Find classes this week",
+        sug_donate: "How do I donate or sponsor?",
+        sug_chenrezig: "Show me Chenrezig resources",
+        sug_visit: "Where is the centre & how to visit?",
+        ask_placeholder: "Ask about events, classes, donations, library...",
+        send: "Send"
+      },
+      zh: {
+        site_name: "阿弥陀佛居士林",
+        nav_teachings: "课程",
+        nav_events: "活动",
+        nav_donate: "捐赠",
+        nav_shop: "商店",
+        nav_library: "资料库",
+        nav_articles: "文章",
+        nav_visit: "来访",
+        login: "登录",
+        donate: "捐赠",
+        hero_title: "清明・慈悲・智慧",
+        hero_desc: "以移动优先的宁静门户，探索课程、报名活动、行持布施、连结传承。",
+        cta_events: "近期活动",
+        cta_teachings: "浏览课程",
+        qa_schedule: "课程表",
+        qa_schedule_desc: "查找本周课程 →",
+        qa_donation: "捐赠与供养",
+        qa_donation_desc: "支持项目 →",
+        qa_library: "电子资料库",
+        qa_library_desc: "经文、PDF 与音频 →",
+        qa_volunteer: "义工服务",
+        qa_volunteer_desc: "发心护持 →",
+        teachings_title: "课程与教育",
+        view_all: "全部 →",
+        discovering_desc: "基础模块：佛法概论、禅修与伦理生活。",
+        next_intake: "下一期开课：11月12日",
+        details: "详情",
+        lamrim_desc: "道次第研读：阅读与引导式思考。",
+        join: "参加",
+        talks_title: "线上开示",
+        talks_desc: "每周开示，含问答与资料下载。",
+        register: "报名",
+        events_title: "近期活动",
+        calendar: "日历 →",
+        puja_desc: "慈悲本尊修持，持咒与引导观修。",
+        retreat_desc: "半日静修：静默、止观与行走禅。",
+        heartsutra_desc: "以般若观空，落实慈悲于日常。",
+        donation_title: "布施行",
+        donation_desc: "护持道场、教育与慈善。可一次或每月定期捐赠，亦可供养佛像、经典与法会物品。",
+        donate_now: "立即捐赠",
+        sponsorship_items: "供养项目",
+        fund_general: "常住基金",
+        fund_sustain: "护持道场",
+        fund_education: "教育",
+        fund_support_classes: "支持课程",
+        fund_library: "图书馆",
+        fund_texts_materials: "经典与法物",
+        fund_compassion: "慈善关怀",
+        fund_care_service: "关怀与服务",
+        give: "供养",
+        shop_title: "法宝商店",
+        add_to_cart: "加入购物车",
+        library_title: "电子资料库",
+        library_desc: "浏览经文、PDF、唱诵与音频开示，供个人修学。",
+        open_library: "进入资料库",
+        latest_articles: "最新文章",
+        download: "下载",
+        play: "播放",
+        open: "打开",
+        articles_title: "文章与消息",
+        art1_title: "忙碌中的安住",
+        art1_desc: "在日常中培养宁静的简易方法。",
+        art2_title: "慈心之本",
+        art2_desc: "理解菩提心并实践培育。",
+        art3_title: "传承与师长",
+        art3_desc: "礼敬师承，弘扬金刚乘传统。",
+        newsletter: "电子报",
+        newsletter_desc: "接收活动提醒与新开示。",
+        email_placeholder: "您的电邮",
+        subscribe: "订阅",
+        explore: "导览",
+        resources: "资源",
+        faq: "常见问题",
+        contact: "联系",
+        assistant_title: "法义助理",
+        quick_questions: "快速提问",
+        assistant_greet: "您好！我可以帮您查找课程、活动、资料或捐赠方式。我能为您做什么？",
+        sug_classes: "查找本周课程",
+        sug_donate: "如何捐赠或供养？",
+        sug_chenrezig: "显示观音资源",
+        sug_visit: "如何来道场？",
+        ask_placeholder: "请询问：活动、课程、捐赠、资料…",
+        send: "发送"
+      }
+    };
+
+    // Language state
+    let LANG = localStorage.getItem('lang') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+    function applyI18n() {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        el.textContent = I18N[LANG][key] || el.textContent;
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        el.setAttribute('placeholder', I18N[LANG][key] || el.getAttribute('placeholder'));
+      });
+      document.documentElement.lang = LANG === 'zh' ? 'zh-Hans' : 'en';
+    }
+    function toggleLang() { LANG = LANG === 'en' ? 'zh' : 'en'; localStorage.setItem('lang', LANG); applyI18n(); }
+    window.addEventListener('DOMContentLoaded', applyI18n);
+  </script>
+
+  <script>
+    // Dark mode toggle
+    const root = document.documentElement;
+    const applyTheme = (mode) => {
+      if (mode === 'dark') root.classList.add('dark'); else root.classList.remove('dark');
+      localStorage.setItem('theme', mode);
+    };
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme ?? (prefersDark ? 'dark' : 'light'));
+  </script>
+
+  <script>
+    // Header interactions
+    window.addEventListener('DOMContentLoaded', () => {
+      const darkBtns = [document.getElementById('dark-toggle'), document.getElementById('dark-toggle-sm')];
+      darkBtns.forEach(b => b?.addEventListener('click', () => {
+        const isDark = document.documentElement.classList.contains('dark');
+        (isDark ? applyTheme('light') : applyTheme('dark'));
+      }));
+      const langBtns = [document.getElementById('lang-toggle'), document.getElementById('lang-toggle-sm')];
+      langBtns.forEach(b => b?.addEventListener('click', toggleLang));
+
+      const btn = document.getElementById('menuBtn');
+      const nav = document.getElementById('mobileNav');
+      btn?.addEventListener('click',()=>nav.classList.toggle('hidden'));
+    });
+  </script>
+
+  <!-- AI Assistant client -->
+  <script>
+    const openBtn = document.getElementById('ai-open');
+    const closeBtn = document.getElementById('ai-close');
+    const panel = document.getElementById('ai-panel');
+    const form = document.getElementById('ai-form');
+    const input = document.getElementById('ai-input');
+    const messages = document.getElementById('ai-messages');
+    const errEl = document.getElementById('ai-error');
+    openBtn.addEventListener('click', () => panel.classList.remove('hidden'));
+    closeBtn.addEventListener('click', () => panel.classList.add('hidden'));
+
+    function bubble(role, text) {
+      const wrap = document.createElement('div');
+      wrap.className = 'flex items-start gap-2 ' + (role === 'user' ? 'justify-end' : '');
+      const avatar = document.createElement('div');
+      avatar.className = 'shrink-0 h-8 w-8 rounded-full flex items-center justify-center ' + (role === 'user'
+        ? 'bg-[var(--brand-maroon)] text-white'
+        : 'ring-gold bg-white dark:bg-stone-800 text-[var(--brand-maroon)] dark:text-stone-100');
+      avatar.textContent = role === 'user' ? 'You' : 'AI';
+      const bb = document.createElement('div');
+      bb.className = (role === 'user'
+        ? 'bg-[var(--brand-maroon)] text-white'
+        : 'bg-white dark:bg-stone-900 text-stone-800 dark:text-stone-200 ring-1 ring-stone-200 dark:ring-stone-800') + ' rounded-xl p-3 text-sm max-w-[80%] whitespace-pre-wrap';
+      bb.textContent = text || '';
+      if (role === 'user') { wrap.appendChild(bb); wrap.appendChild(avatar); }
+      else { wrap.appendChild(avatar); wrap.appendChild(bb); }
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+      return bb;
+    }
+
+    async function chat(prompt) {
+      errEl.classList.add('hidden');
+      bubble('user', prompt);
+      const ab = bubble('assistant', '');
+
+      const payload = {
+        lang: LANG,
+        messages: [
+          { role: 'system', content: 'You are a kind Dharma assistant for a Tibetan Buddhist centre website. Be concise, calm, and helpful. Prefer the language indicated by "lang". Cite specific sections (Teachings, Events, Donation, Library) when helpful.' },
+          { role: 'user', content: prompt }
+        ]
+      };
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok || !res.body) throw new Error('Network error');
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          ab.textContent += decoder.decode(value, { stream: true });
+          messages.scrollTop = messages.scrollHeight;
+        }
+      } catch (e) {
+        errEl.textContent = LANG === 'zh' ? '抱歉，助理暂时无法连接，请稍后再试。' : 'Sorry, I could not reach the assistant. Please try again.';
+        errEl.classList.remove('hidden');
+      }
+    }
+
+    document.getElementById('ai-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = (input.value || '').trim();
+      if (!q) return;
+      input.value = '';
+      chat(q);
+    });
+
+    // Quick suggestion shortcuts
+    document.querySelectorAll('.ai-suggest').forEach(btn => {
+      btn.addEventListener('click', () => chat(btn.textContent.trim()));
+    });
+  </script>
+</body>
+</html>
